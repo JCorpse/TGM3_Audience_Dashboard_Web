@@ -3,6 +3,7 @@ const {defineConfig} = require('@vue/cli-service')
 module.exports = defineConfig({
     transpileDependencies: true,
     publicPath:'/TGM3_Audience_Dashboard_Web/',
+    productionSourceMap:false,
     pages:{
         index:{
             entry:'src/main.js',
@@ -17,8 +18,7 @@ module.exports = defineConfig({
             filename:'chat.html',
             title:'你是鬼吧',
             chunks: ['chunk-vendors', 'chunk-common', 'chat']
-        }
-        
-
-    }
+        },
+    },
+    filenameHashing:false
 })
