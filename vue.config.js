@@ -2,6 +2,7 @@ const {defineConfig} = require('@vue/cli-service')
 
 module.exports = defineConfig({
     transpileDependencies: true,
+    publicPath:'/TGM3_Audience_Dashboard_Web/',
     pages:{
         index:{
             entry:'src/main.js',
