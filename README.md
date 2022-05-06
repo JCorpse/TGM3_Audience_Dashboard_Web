@@ -1,4 +1,4 @@
-# tgm3_audience_dashboard_web
+# TGM3_Audience_Dashboard_Web
 
 ## Project setup
 ```

@@ -1,44 +1,46 @@
 <template>
-  <div id="app">
-    <el-main>
-    <iframe id="twitch-chat-embed" src="" height="500" width="350"> </iframe>
-
-    <el-form :inline="true" :model="formInline" >
-      <el-form-item label="Token">
-        <el-input v-model="this.Token" />
-      </el-form-item>
-      <el-form-item label="Msg">
-        <el-input v-model="this.Msg" />
-      </el-form-item>
-      <el-form-item>
-        <el-button type="button" @click="postData(this.API_URL)">Query</el-button>
-      </el-form-item>
-    </el-form>
-    </el-main>
-
-    <form action="/bot/send" id="sendform" method="post" target="hide_iframe">
-      <input type="password" name="token" id="token" />
-      <input type="text" name="msg" id="msg" />
-      <input
-        type="button"
-        value="submit"
-        name="submit"
-        id="submit"
-        onclick="postData()"
-      />
-    </form>
-  </div>
+  <el-container>
+    <el-container class="live">
+      <el-main>
+        <TwitchComponent></TwitchComponent>
+      </el-main>
+      <el-footer>
+        <el-form :inline="true" :model="form">
+          <el-form-item label="Token">
+            <el-input v-model="form.token" type="password" />
+          </el-form-item>
+          <el-form-item label="Msg">
+            <el-input v-model="form.msg" />
+          </el-form-item>
+          <el-form-item>
+            <el-button @click="postData(this.API_URL)">Query</el-button>
+          </el-form-item>
+          <el-form-item>
+            <el-button @click="postONON()">我ㄋ</el-button>
+          </el-form-item>
+        </el-form>
+      </el-footer>
+    </el-container>
+    <el-container class="chat-container">
+      <el-aside class="chat-container">
+        <iframe id="twitch-chat-embed" src="" class="chat"> </iframe>
+      </el-aside>
+    </el-container>
+  </el-container>
 </template>
 <script>
-// const API_BASE_URL = "https://tgm3-audience-dashboard.herokuapp.com/api/";
+import TwitchComponent from "@/components/twitch";
 
 export default {
   name: "chat-page",
+  components: { TwitchComponent },
   data() {
     return {
-      API_URL:'https://tgm3-audience-dashboard.herokuapp.com/bot/send',
-      Token:'',
-      Msg:''
+      API_URL: "https://tgm3-audience-dashboard.herokuapp.com/bot/send",
+      form: {
+        token: "",
+        msg: "",
+      },
     };
   },
   methods: {
@@ -49,10 +51,7 @@ export default {
     },
     async postData(url) {
       return fetch(url, {
-        body: {
-          'token':this.token,
-          'msg':this.Msg
-        },
+        body: new URLSearchParams(this.form).toString(),
         headers: {
           "user-agent":
             "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.127 Safari/537.36",
@@ -61,8 +60,12 @@ export default {
         method: "POST",
         referrer: "no-referrer",
       }).then(() => {
-        document.getElementById("msg").value = "";
+        this.form.msg = "";
       });
+    },
+    async postONON() {
+      this.form.msg = "我ㄋ我ㄋ我ㄋ我ㄋ我ㄋ我ㄋ我ㄋ我ㄋ我ㄋ";
+      this.postData(this.API_URL);
     },
   },
   mounted() {
@@ -70,4 +73,23 @@ export default {
   },
 };
 </script>
-<style lang="scss"></style>
+<style lang="scss">
+#app {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #80cbc4;
+  width: 100%;
+  height: 100vh;
+}
+.live {
+  height: 910px;
+}
+.chat {
+  height: 850px;
+  width: 350px;
+}
+.chat-container {
+  height: 900px;
+  width: 400px;
+}
+</style>

@@ -9,7 +9,7 @@ import * as ech from 'echarts';
 const API_BASE_URL = "https://tgm3-audience-dashboard.herokuapp.com/api/";
 
 export default {
-  name: 'draw-components',
+  name: 'draw-component',
   data() {
     return {
       Trains: [],
@@ -31,7 +31,7 @@ export default {
     },
     async draw() {
       await(this.getTrainData());
-      const chart = ech.init(document.getElementById('app'))
+      const chart = ech.init(document.getElementById('draw'))
       var option = {
         xAxis: {
           data:[]
