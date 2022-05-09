@@ -11,6 +11,7 @@ export default {
         width: 1400,
         height: 800,
         channel: "tetristhegrandmaster3",
+        muted:false
       };
       new Twitch.Player("twitchVideo", options);
     },
