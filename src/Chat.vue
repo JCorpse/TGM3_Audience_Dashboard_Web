@@ -64,7 +64,9 @@ export default {
       });
     },
     async postONON() {
-      this.form.msg = "我ㄋ我ㄋ我ㄋ我ㄋ我ㄋ我ㄋ我ㄋ我ㄋ我ㄋ";
+      for(let i=0;i<= Math.floor(Math.random()*10)+1;i++) {
+        this.form.msg = this.form.msg + "我ㄋ";
+      }
       this.postData(this.API_URL);
     },
   },

@@ -5,20 +5,25 @@
       <el-container>
         <el-aside>
           <el-menu
-            active-text-color="#ffd04b"
-            background-color="#545c64"
-            text-color="#fff"
-            @open="handleOpen"
-            @close="handleClose"
+              active-text-color="#ffd04b"
+              background-color="#545c64"
+              text-color="#fff"
+              @open="handleOpen"
+              @close="handleClose"
           >
+            <el-menu-item index="0">
+              <span>這是0</span>
+            </el-menu-item>
             <el-menu-item index="1">
-              <span>Navigator Two</span>
+              <span>這是1</span>
             </el-menu-item>
           </el-menu>
         </el-aside>
         <el-main>
           <el-menu mode="horizontal" @select="handleSelect">
-            <el-menu-item index="1">Orders</el-menu-item>
+            <el-menu-item index="0">折線圖</el-menu-item>
+            <el-menu-item index="1">柱狀圖</el-menu-item>
+            <el-menu-item index="2">散點圖</el-menu-item>
           </el-menu>
           <draw-component></draw-component>
         </el-main>
@@ -32,7 +37,7 @@ import DrawComponent from "@/components/draw";
 
 export default {
   name: "App",
-  components: { DrawComponent },
+  components: {DrawComponent},
 };
 </script>
 
