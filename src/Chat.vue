@@ -36,7 +36,7 @@ export default {
   components: { TwitchComponent },
   data() {
     return {
-      API_URL: "https://tgm3-audience-dashboard.herokuapp.com/bot/send",
+      API_URL: "https://tgm3-audience-dashboard.onrender.com/bot/send",
       form: {
         token: "",
         msg: "",
